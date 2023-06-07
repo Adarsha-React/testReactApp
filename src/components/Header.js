@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import appLogo from "../assets/images/appLogo.png";
 
 const Header = () => {
@@ -5,7 +6,9 @@ const Header = () => {
     <div className="container mx-auto mt-2">
       <div className="flex shadow-md">
         <div className="w-1/2">
-          <img className="w-12 h-12" src={appLogo} alt="App Logo" />
+          <a href="/">
+            <img className="w-12 h-12" src={appLogo} alt="App Logo" />
+          </a>
         </div>
         <div className=" w-3/2 container mx-auto flex justify-between mr-10 mt-2">
           <div className="container mx-auto flex justify-between">
@@ -19,17 +22,19 @@ const Header = () => {
                 Search
               </button>
             </div>
-            <div className="flex">
-              <div className="mx-2">
-                <h1 className="bg-gray-200 font-semibold text-xs px-2 py-1 rounded-md">
-                  About
-                </h1>
-              </div>
-              <div className="mx-2">
-                <h1 className="bg-gray-200 font-semibold text-xs px-2 py-1 rounded-md">
-                  Cart
-                </h1>
-              </div>
+            <div>
+              <ul className="flex">
+                <li className="mx-2 bg-gray-200 font-semibold text-xs px-2 py-1 rounded-md">
+                  <Link to="/home"> Home </Link>
+                </li>
+
+                <li className="mx-2 bg-gray-200 font-semibold text-xs px-2 py-1 rounded-md">
+                  <Link to="/about"> About </Link>
+                </li>
+                <li className="mx-2 bg-gray-200 font-semibold text-xs px-2 py-1 rounded-md">
+                  <Link to="/cart"> Cart </Link>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

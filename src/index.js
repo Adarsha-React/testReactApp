@@ -4,20 +4,40 @@ import "./index.css";
 import Header from "./components/Header";
 import Body from "./components/Body";
 import Footer from "./components/Footer";
+import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import About from "./components/About";
+import Cart from "./components/Cart";
 
-function AppLayout() {
+const AppLayout = () => {
   return (
     <div>
       <Header />
-      <Body />
+      <Outlet />
       <Footer />
     </div>
   );
-}
+};
+
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/home",
+        element: <Body />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
+    ],
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <AppLayout />
-  </React.StrictMode>
-);
+root.render(<RouterProvider router={appRouter} />);
