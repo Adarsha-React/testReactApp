@@ -9,5 +9,19 @@ test("Logo should load on render", () => {
     </StaticRouter>
   );
 
-  console.log(header);
+  const logo = header.getByTestId("logo");
+
+  expect(logo.src).toBe("http://localhost/dummyImage.png");
+});
+
+test("Check whether the search box present", () => {
+  const header = render(
+    <StaticRouter>
+      <Header />
+    </StaticRouter>
+  );
+
+  const search = header.getByTestId("search");
+  expect(search.placeholder).toBe("Search");
+  console.log(search);
 });
