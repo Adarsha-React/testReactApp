@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 import appLogo from "../assets/images/appLogo.png";
-import { useOnline } from "../mocks/utilities/useOnline";
+import { useOnline } from "../utilities/useOnline";
+import { useSelector } from "react-redux";
+import store from "../utilities/store";
 
 const Header = () => {
   const isOnline = useOnline();
+
+  const cartItems = useSelector((store) => store.cart.items);
 
   return (
     <div className="container mx-auto mt-2">
@@ -33,16 +37,13 @@ const Header = () => {
             </div>
             <div>
               <ul className="flex">
-                <li>{isOnline ? "🟢" : "🔴"}</li>
-                <li className="mx-2 bg-gray-200 font-semibold text-xs px-2 py-1 rounded-md">
-                  <Link to="/home"> Home </Link>
-                </li>
+                <li data-testid="isOnline">{isOnline ? "🟢" : "🔴"}</li>
 
                 <li className="mx-2 bg-gray-200 font-semibold text-xs px-2 py-1 rounded-md">
                   <Link to="/about"> About </Link>
                 </li>
                 <li className="mx-2 bg-gray-200 font-semibold text-xs px-2 py-1 rounded-md">
-                  <Link to="/cart"> Cart </Link>
+                  <Link to="/cart"> Cart - {cartItems.length} </Link>
                 </li>
               </ul>
             </div>

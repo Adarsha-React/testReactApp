@@ -7,14 +7,16 @@ import Footer from "./components/Footer";
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import About from "./components/About";
 import Cart from "./components/Cart";
+import { Provider } from "react-redux";
+import store from "./utilities/store";
 
 const AppLayout = () => {
   return (
-    <div>
+    <Provider store={store}>
       <Header />
       <Outlet />
       <Footer />
-    </div>
+    </Provider>
   );
 };
 
@@ -24,7 +26,7 @@ const appRouter = createBrowserRouter([
     element: <AppLayout />,
     children: [
       {
-        path: "/home",
+        path: "/",
         element: <Body />,
       },
       {

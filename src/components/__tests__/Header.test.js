@@ -23,5 +23,18 @@ test("Check whether the search box present", () => {
 
   const search = header.getByTestId("search");
   expect(search.placeholder).toBe("Search");
-  console.log(search);
+  //console.log(search);
+});
+
+test("Check whether online and offline is working correctly", () => {
+  const header = render(
+    <StaticRouter>
+      <Header />
+    </StaticRouter>
+  );
+
+  const isOnline = header.getByTestId("isOnline");
+  expect(isOnline.innerHTML).toBe("🟢");
+
+  console.log(isOnline);
 });
