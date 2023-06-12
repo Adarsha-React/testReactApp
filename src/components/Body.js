@@ -1,31 +1,20 @@
-import { useDispatch } from "react-redux";
-import { addItem, clearCart } from "./cartSlice";
+import { useFetchRestaurants } from "../utilities/useFetchRestaurants";
+import { FETCH_ALL_RESTAURANTS } from "../constants";
+import RestaurantCard from "./RestaurantCard";
 
 const Body = () => {
-  const dispatch = useDispatch();
+  const restaurants = useFetchRestaurants(FETCH_ALL_RESTAURANTS);
+  console.log(restaurants);
 
-  const handleAddItem = () => {
-    dispatch(addItem("Grapes"));
-  };
-
-  const handleClearCart = () => {
-    dispatch(clearCart());
-  };
+  if (!restaurants) return null; // Early return
 
   return (
-    <div className="my-10 container mx-auto">
-      <button
-        className="bg-gray-200 font-semibold text-xs px-2 py-1 rounded-md mr-10"
-        onClick={handleAddItem}
-      >
-        Add to Cart
-      </button>
-      <button
-        className="bg-gray-200 font-semibold text-xs px-2 py-1 rounded-md"
-        onClick={handleClearCart}
-      >
-        Clear Cart
-      </button>
+    <div className="flex flex-wrap mx-48 justify-around">
+      {restaurants.map((restaurant) => (
+        <div key={restaurant?.data?.id}>
+          <RestaurantCard {...restaurant?.data} />
+        </div>
+      ))}
     </div>
   );
 };

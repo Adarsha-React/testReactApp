@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <div className="container mx-auto mt-2">
       <div className="flex shadow-md">
-        <div className="w-1/2">
+        <div className="">
           <a href="/">
             <img
               data-testid="logo"
@@ -22,8 +22,8 @@ const Header = () => {
             />
           </a>
         </div>
-        <div className=" w-3/2 container mx-auto flex justify-between mr-10 mt-2">
-          <div className="container mx-auto flex justify-between">
+        <div className="container mx-auto mr-10 mt-2">
+          <div className="container mx-auto flex justify-around">
             <div className="mx-2 w-3/2">
               <input
                 data-testid="search"
@@ -38,13 +38,17 @@ const Header = () => {
             <div>
               <ul className="flex">
                 <li data-testid="isOnline">{isOnline ? "🟢" : "🔴"}</li>
-
                 <li className="mx-2 bg-gray-200 font-semibold text-xs px-2 py-1 rounded-md">
                   <Link to="/about"> About </Link>
                 </li>
-                <li className="mx-2 bg-gray-200 font-semibold text-xs px-2 py-1 rounded-md">
-                  <Link to="/cart"> Cart - {cartItems.length} </Link>
-                </li>
+                <Link to="/cart">
+                  <li
+                    className="mx-2 bg-gray-200 font-semibold text-xs px-2 py-1 rounded-md"
+                    data-testid="cart"
+                  >
+                    Cart - {cartItems.length}
+                  </li>
+                </Link>
               </ul>
             </div>
           </div>
