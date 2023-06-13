@@ -8,7 +8,7 @@ const RestaurantCard = ({ name, cloudinaryImageId, cuisines, costForTwo }) => {
         src={RESTAURANT_IMG_CDN + cloudinaryImageId}
       />
       <h1 className="text-xs font-bold mb-1">{name}</h1>
-      <h1 className="text-[9px] text-gray-500 mb-4">{cuisines.join(", ")}</h1>
+      <h1 className="text-[9px] text-gray-500 mb-4">{cuisines?.join(", ")}</h1>
       <div>
         <h1 className="text-[7px] text-gray-500 font-semibold">
           ₹{costForTwo / 100} FOR TWO

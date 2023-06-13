@@ -1,21 +1,21 @@
-import { useFetchRestaurants } from "../utilities/useFetchRestaurants";
-import { FETCH_ALL_RESTAURANTS } from "../constants";
-import RestaurantCard from "./RestaurantCard";
+import { useContext, useState } from "react";
+import MainContainer from "./MainContainer";
+import SearchContext from "../utilities/SearchContext";
 
 const Body = () => {
-  const restaurants = useFetchRestaurants(FETCH_ALL_RESTAURANTS);
-  console.log(restaurants);
-
-  if (!restaurants) return null; // Early return
+  const [search, setSearch] = useState({
+    searchText: "Burger King",
+  });
 
   return (
-    <div className="flex flex-wrap mx-48 justify-around">
-      {restaurants.map((restaurant) => (
-        <div key={restaurant?.data?.id}>
-          <RestaurantCard {...restaurant?.data} />
-        </div>
-      ))}
-    </div>
+    <SearchContext.Provider
+      value={{
+        search: search,
+        setSearch: setSearch,
+      }}
+    >
+      <MainContainer />
+    </SearchContext.Provider>
   );
 };
 
