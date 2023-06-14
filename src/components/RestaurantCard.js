@@ -2,7 +2,7 @@ import { RESTAURANT_IMG_CDN } from "../constants";
 
 const RestaurantCard = ({ name, cloudinaryImageId, cuisines, costForTwo }) => {
   return (
-    <div className="p-3 w-48 h-56 mt-2 cursor-pointer hover:shadow">
+    <div className="p-3 w-48 h-56 mt-2 mx-2 cursor-pointer hover:shadow-md">
       <img
         className="w-44 h-24 mb-2"
         src={RESTAURANT_IMG_CDN + cloudinaryImageId}

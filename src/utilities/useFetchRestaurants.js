@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { fetchAllRestaurantsPath } from "../constants";
 
 export const useFetchRestaurants = (fecth_Restaurants_URL) => {
   const [restaurants, setRestaurants] = useState(null);
