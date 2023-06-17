@@ -3,3 +3,6 @@ export const FETCH_ALL_RESTAURANTS =
 
 export const RESTAURANT_IMG_CDN =
   "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/";
+
+export const CAROUSEL_IMG =
+  "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_520,h_520/";
