@@ -4,7 +4,7 @@ const Shimmer = () => {
       <div className="w-full h-56 bg-gray-800 py-7">
         <div className="flex justify-center pt-10">
           <svg
-            ariaHidden="true"
+            aria-hidden="true"
             className="w-10 h-10 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
             viewBox="0 0 100 101"
             fill="none"
@@ -25,8 +25,8 @@ const Shimmer = () => {
       <div className="w-2/3 justify-center mx-auto flex flex-wrap">
         {Array(15)
           .fill("")
-          .map(() => (
-            <div>
+          .map((value, index) => (
+            <div key={index}>
               <div className="w-48 h-36 bg-slate-200 my-3 mr-2 "></div>
               <div className="w-36 h-5 bg-slate-200 my-1"></div>
               <div className="w-28 h-3 bg-slate-200 my-1"></div>

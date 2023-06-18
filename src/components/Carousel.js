@@ -1,13 +1,66 @@
+import { CAROUSEL_IMG } from "../constants";
 import CarouselCard from "./CarouselCard";
 
 const Carousel = ({ carousels }) => {
   return (
-    <div className="w-full h-56 bg-gray-800 py-7 cursor-pointer">
-      <div className="w-2/3 mx-auto flex justify-evenly">
-        {carousels.map((carousel) => (
-          <CarouselCard key={carousel?.data?.bannerId} {...carousel.data} />
-        ))}
+    <div className="flex justify-center items-center bg-slate-900 p-2">
+      <button
+        onClick={() => {
+          document.getElementById("box").scrollLeft -= 265;
+        }}
+        className=" text-black bg-white px-2 py-2  rounded-full "
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-6 h-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+          />
+        </svg>
+      </button>
+      <div className="w-[75%] h-72  p-4 relative overflow-hidden">
+        <div
+          className="flex  w-full  absolute   py-2 overflow-x-auto scroll-smooth "
+          id="box"
+        >
+          {carousels.map((carousel) => (
+            <img
+              key={carousel?.data?.bannerId}
+              className="w-60 m-2 p-2 rounded-2xl"
+              alt="someImg"
+              src={CAROUSEL_IMG + carousel?.data?.creativeId}
+            />
+          ))}
+        </div>
       </div>
+      <button
+        onClick={() => {
+          document.getElementById("box").scrollLeft += 265;
+        }}
+        className="ml-2 text-black bg-white px-2 py-2  rounded-full"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-6 h-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+          />
+        </svg>
+      </button>
     </div>
   );
 };
