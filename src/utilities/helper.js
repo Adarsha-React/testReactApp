@@ -15,7 +15,7 @@ export const sortByDeliveryTime = (allRestaurants) => {
 
 export const sortByRating = (allRestaurants) => {
   const sortedRestaurants = [...allRestaurants].sort(
-    (a, b) => a?.data?.avgRating - b?.data?.avgRating
+    (a, b) => b?.data?.avgRating - a?.data?.avgRating
   );
   return sortedRestaurants;
 };

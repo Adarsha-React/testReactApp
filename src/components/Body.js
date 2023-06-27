@@ -8,6 +8,7 @@ import {
   sortByRating,
 } from "../utilities/helper";
 import Carousel from "./Carousel";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [searchText, setSearchText] = useState("");
@@ -83,7 +84,9 @@ const Body = () => {
         ) : (
           filteredRestaurants?.map((restaurant) => (
             <div key={restaurant?.data?.id}>
-              <RestaurantCard {...restaurant?.data} />
+              <Link to={"restaurants/" + restaurant?.data?.id}>
+                <RestaurantCard {...restaurant?.data} />
+              </Link>
             </div>
           ))
         )}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { MENU_URL } from "../constants";
+import MenuDetails from "./MenuDetails";
 
 const RestaurantMenu = () => {
   const [resMenu, setResMenu] = useState(null);
@@ -12,10 +13,9 @@ const RestaurantMenu = () => {
   }, []);
 
   const fetchMenuDetails = async () => {
-    const data = await fetch(MENU_URL);
+    const data = await fetch(MENU_URL + resId);
     const json = await data.json();
     setResMenu(json?.data);
-    console.log(resMenu);
   };
 
   if (resMenu === null) return <h1>Loading menu details</h1>;
@@ -23,12 +23,19 @@ const RestaurantMenu = () => {
   const { name, cuisines, areaName } = resMenu?.cards[0]?.card?.card?.info;
   const { lastMileTravelString } = resMenu?.cards[0]?.card?.card?.info?.sla;
 
-  const menuDetails =
-    resMenu?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
+  const completeMenuDetails =
+    resMenu?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
 
-  const { title, itemCards } = menuDetails;
+  const typeItemCategory =
+    "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory";
+
+  const menuCategoryDetails = completeMenuDetails.filter(
+    (singleItem) => singleItem.card.card["@type"] === typeItemCategory
+  );
+
+  console.log(menuCategoryDetails);
   return (
-    <div className="w-2/3 mx-auto my-3">
+    <div className="w-2/5 mx-auto my-3">
       <div className="bg-slate-50 p-3">
         <h1 className="font-bold text-sm">{name}</h1>
         <h1 className="text-[8px] font-sans text-gray-500 pt-2">
@@ -38,15 +45,13 @@ const RestaurantMenu = () => {
           <span>{areaName}</span> <span>{lastMileTravelString}</span>
         </div>
       </div>
-      <div className="bg-slate-50 p-3">
-        <h1 className="font-bold text-xs">{title}</h1>
-        <div>
-          {itemCards.map((item) => (
-            <li className="list-none text-xs font-semibold py-2">
-              {item.card.info.name}
-            </li>
-          ))}
-        </div>
+      <div>
+        {menuCategoryDetails.map((singleCategory, index) => (
+          <MenuDetails
+            singleMenuDetails={singleCategory?.card?.card}
+            key={index}
+          />
+        ))}
       </div>
     </div>
   );
