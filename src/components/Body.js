@@ -33,7 +33,7 @@ const Body = () => {
   ) : (
     <div className="">
       {/* <Carousel carousels={carousels} /> */}
-      <div className="my-3 w-2/3 mx-auto">
+      <div className="my-3 w-2/3 mx-auto sticky top-2">
         <input
           data-testid="search"
           className="mr-2 p-1 outline-none font-mono border border-1 text-sm w-1/3"
@@ -77,7 +77,7 @@ const Body = () => {
         <hr className="w-2/3 mx-auto mt-1" />
       </div>
       <div className="flex flex-wrap w-2/3 mx-auto">
-        {filteredRestaurants.length === 0 ? (
+        {filteredRestaurants?.length === 0 ? (
           <div>
             <h1>No restaurant found!!</h1>
           </div>

@@ -33,15 +33,14 @@ const RestaurantMenu = () => {
     (singleItem) => singleItem.card.card["@type"] === typeItemCategory
   );
 
-  console.log(menuCategoryDetails);
   return (
     <div className="w-2/5 mx-auto my-3">
       <div className="bg-slate-50 p-3">
         <h1 className="font-bold text-sm">{name}</h1>
-        <h1 className="text-[8px] font-sans text-gray-500 pt-2">
+        <h1 className="text-[9px] pt-2 font-mono text-gray-500">
           {cuisines.join(", ")}
         </h1>
-        <div className="text-[8px] text-gray-500">
+        <div className="text-[9px] font-mono text-gray-500">
           <span>{areaName}</span> <span>{lastMileTravelString}</span>
         </div>
       </div>
