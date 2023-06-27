@@ -33,7 +33,7 @@ const Body = () => {
   ) : (
     <div className="">
       {/* <Carousel carousels={carousels} /> */}
-      <div className="my-3 w-2/3 mx-auto sticky top-2">
+      <div className="my-3 w-2/3 mx-auto">
         <input
           data-testid="search"
           className="mr-2 p-1 outline-none font-mono border border-1 text-sm w-1/3"

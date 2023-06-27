@@ -20,6 +20,8 @@ const RestaurantMenu = () => {
 
   if (resMenu === null) return <h1>Loading menu details</h1>;
 
+  console.log(resMenu);
+
   const { name, cuisines, areaName } = resMenu?.cards[0]?.card?.card?.info;
   const { lastMileTravelString } = resMenu?.cards[0]?.card?.card?.info?.sla;
 
@@ -34,23 +36,24 @@ const RestaurantMenu = () => {
   );
 
   return (
-    <div className="w-2/5 mx-auto my-3">
-      <div className="bg-slate-50 p-3">
-        <h1 className="font-bold text-sm">{name}</h1>
-        <h1 className="text-[9px] pt-2 font-mono text-gray-500">
-          {cuisines.join(", ")}
-        </h1>
-        <div className="text-[9px] font-mono text-gray-500">
-          <span>{areaName}</span> <span>{lastMileTravelString}</span>
+    <div className="bg-gray-50">
+      <div className="w-2/5 mx-auto">
+        <div className="py-3">
+          <h1 className="font-bold text-sm">{name}</h1>
+          <h1 className="text-[9px] pt-2 font-mono text-gray-500">
+            {cuisines.join(", ")}
+          </h1>
+          <div className="text-[9px] font-mono text-gray-500">
+            <span>{areaName + ", "}</span> <span>{lastMileTravelString}</span>
+          </div>
         </div>
-      </div>
-      <div>
-        {menuCategoryDetails.map((singleCategory, index) => (
-          <MenuDetails
-            singleMenuDetails={singleCategory?.card?.card}
-            key={index}
-          />
-        ))}
+        <div>
+          {menuCategoryDetails.map((singleCategory, index) => (
+            <div key={index}>
+              <MenuDetails singleMenuDetails={singleCategory?.card?.card} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

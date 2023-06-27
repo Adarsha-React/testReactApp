@@ -8,7 +8,7 @@ const Header = () => {
 
   const cartItems = useSelector((store) => store.cart.items);
   return (
-    <div className="flex justify-between px-5 shadow-md sticky top-0 bg-white">
+    <div className="flex justify-between px-5 shadow-sm">
       <div className="">
         <a href="/">
           <img

@@ -7,7 +7,7 @@ const MenuDetails = ({ singleMenuDetails }) => {
   const { title, itemCards } = singleMenuDetails;
 
   return (
-    <div className="bg-slate-50 p-3">
+    <div className="py-3">
       <div className="flex justify-between">
         <h1 className="font-bold text-xs">
           {title + " (" + itemCards?.length + ") "}
@@ -21,7 +21,7 @@ const MenuDetails = ({ singleMenuDetails }) => {
                 viewBox="0 0 24 24"
                 strokeWidth="2"
                 stroke="currentColor"
-                className="w-5 h-5"
+                className="w-3 h-3"
               >
                 <path
                   strokeLinecap="round"
@@ -38,7 +38,7 @@ const MenuDetails = ({ singleMenuDetails }) => {
                 viewBox="0 0 24 24"
                 strokeWidth="2"
                 stroke="currentColor"
-                className="w-5 h-5"
+                className="w-3 h-3"
               >
                 <path
                   strokeLinecap="round"
@@ -53,26 +53,34 @@ const MenuDetails = ({ singleMenuDetails }) => {
       <div>
         {isVisible &&
           itemCards.map((item) => (
-            <div
-              key={item?.card?.info?.id}
-              className="py-2 flex justify-between"
-            >
-              <div>
-                <h1 className="text-xs font-semibold">
-                  {item?.card?.info?.name}
-                </h1>
-                <h1 className="text-[9px]">₹{item?.card?.info?.price / 100}</h1>
-              </div>
-              <div className="w-24 h-18">
-                <img
-                  src={MENU_IMG_URL + item?.card?.info?.imageId}
-                  alt="Menu image"
-                  className="w-24 h-16"
-                />
+            <div key={item?.card?.info?.id}>
+              <hr className="w-full mx-auto my-1" />
+              <div className="py-2 flex justify-between">
+                <div>
+                  <h1 className="text-xs font-semibold">
+                    {item?.card?.info?.name}
+                  </h1>
+                  <h1 className="text-[9px]">
+                    ₹
+                    {item?.card?.info?.price / 100 ||
+                      item?.card?.info?.defaultPrice / 100}
+                  </h1>
+                </div>
+                <div className="w-24 h-18">
+                  <img
+                    src={MENU_IMG_URL + item?.card?.info?.imageId}
+                    alt="Menu image"
+                    className="w-24 h-16 rounded-md"
+                  />
+                  <button className="mt-2 text-[9px] shadow-md text-green-400 px-3 py-1 font-bold bg-slate-200 rounded-sm ml-6">
+                    ADD
+                  </button>
+                </div>
               </div>
             </div>
           ))}
       </div>
+      <hr className="w-full mx-auto my-3 border border-4" />
     </div>
   );
 };
