@@ -31,7 +31,7 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="">
-      <Carousel carousels={carousels} />
+      {/* <Carousel carousels={carousels} /> */}
       <div className="my-3 w-2/3 mx-auto">
         <input
           data-testid="search"

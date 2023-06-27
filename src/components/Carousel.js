@@ -1,6 +1,10 @@
+import { useEffect } from "react";
 import { CAROUSEL_IMG } from "../constants";
 
 const Carousel = ({ carousels }) => {
+  useEffect(() => {
+    console.log("UseEffect");
+  }, [undefined]);
   return (
     <div className="flex justify-center items-center bg-slate-900 p-2">
       <button

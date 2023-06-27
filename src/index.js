@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import Header from "./components/Header";
@@ -16,7 +16,6 @@ const AppLayout = () => {
     <Provider store={store}>
       <Header />
       <Outlet />
-      <Footer />
     </Provider>
   );
 };
@@ -39,7 +38,7 @@ const appRouter = createBrowserRouter([
         element: <Cart />,
       },
       {
-        path: "/restaurant/:resId",
+        path: "/restaurants/:resId",
         element: <RestaurantMenu />,
       },
     ],
