@@ -1,10 +1,21 @@
+import { useDispatch } from "react-redux";
 import { MENU_IMG_URL } from "../constants";
 import { useState } from "react";
+import { addItem, removeItem } from "./cartSlice";
 
 const MenuDetails = ({ singleMenuDetails }) => {
   const [isVisible, setIsVisible] = useState(true);
 
   const { title, itemCards } = singleMenuDetails;
+
+  const dispatch = useDispatch();
+
+  const addFoodItem = (item) => {
+    dispatch(addItem(item));
+  };
+  const removeFoodItem = (item) => {
+    dispatch(removeItem(item));
+  };
 
   return (
     <div className="py-3">
@@ -54,16 +65,19 @@ const MenuDetails = ({ singleMenuDetails }) => {
         {isVisible &&
           itemCards.map((item) => (
             <div key={item?.card?.info?.id}>
-              <hr className="w-full mx-auto my-1" />
+              <hr className="w-full mx-auto my-1 border-gray-300" />
               <div className="py-2 flex justify-between">
-                <div>
-                  <h1 className="text-xs font-semibold">
+                <div className="w-3/4">
+                  <h1 className="text-[9px] font-semibold">
                     {item?.card?.info?.name}
                   </h1>
                   <h1 className="text-[9px]">
                     ₹
                     {item?.card?.info?.price / 100 ||
                       item?.card?.info?.defaultPrice / 100}
+                  </h1>
+                  <h1 className="text-[8px] mt-3">
+                    {item?.card?.info?.description}
                   </h1>
                 </div>
                 <div className="w-24 h-18">
@@ -72,15 +86,26 @@ const MenuDetails = ({ singleMenuDetails }) => {
                     alt="Menu image"
                     className="w-24 h-16 rounded-md"
                   />
-                  <button className="mt-2 text-[9px] shadow-md text-green-400 px-3 py-1 font-bold bg-slate-200 rounded-sm ml-6">
-                    ADD
-                  </button>
+                  <div className="flex">
+                    <button
+                      className="mt-2 text-[9px] shadow-md text-green-400 px-2 py-1 ml-1 font-bold bg-slate-200 rounded-sm"
+                      onClick={() => addFoodItem(item)}
+                    >
+                      ADD
+                    </button>
+                    <button
+                      className="mt-2 text-[9px] shadow-md text-green-400 px-1 py-1 mx-1 font-bold bg-slate-200 rounded-sm"
+                      onClick={() => removeFoodItem(item)}
+                    >
+                      REMOVE
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           ))}
       </div>
-      <hr className="w-full mx-auto my-3 border border-4" />
+      <hr className="w-full mx-auto my-3 border-4" />
     </div>
   );
 };
