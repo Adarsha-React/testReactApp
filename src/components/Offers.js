@@ -1,14 +1,13 @@
 import { OFFER_IMG_URL } from "../constants";
 
 const Offers = ({ offersInfo }) => {
-  console.log(offersInfo);
   return (
     <div>
       <div className="flex flex-wrap">
-        {offersInfo.map((offer) => (
+        {offersInfo.map((offer, index) => (
           <div
             className="shadow-sm p-1 bg-slate-50 rounded-md border mr-2 pr-4 py-2 cursor-pointer mb-2"
-            key={offer?.info?.couponCode}
+            key={index}
           >
             <div className="flex">
               <img

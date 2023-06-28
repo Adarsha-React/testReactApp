@@ -1,9 +1,9 @@
 import { useDispatch } from "react-redux";
 import { MENU_IMG_URL } from "../constants";
 import { useState } from "react";
-import { addItem, removeItem } from "./cartSlice";
+import { addItem } from "./cartSlice";
 
-const MenuDetails = ({ singleMenuDetails }) => {
+const MenuDetails = ({ singleMenuDetails, restaurantDetails }) => {
   const [isVisible, setIsVisible] = useState(true);
 
   const { title, itemCards } = singleMenuDetails;
@@ -13,9 +13,8 @@ const MenuDetails = ({ singleMenuDetails }) => {
   const addFoodItem = (item) => {
     dispatch(addItem(item));
   };
-  const removeFoodItem = (item) => {
-    dispatch(removeItem(item));
-  };
+
+  if (!singleMenuDetails) return null;
 
   return (
     <div className="py-3">
@@ -86,20 +85,13 @@ const MenuDetails = ({ singleMenuDetails }) => {
                     alt="Menu image"
                     className="w-24 h-16 rounded-md"
                   />
-                  <div className="flex">
-                    <button
-                      className="mt-2 text-[9px] shadow-md text-green-400 px-2 py-1 ml-1 font-bold bg-slate-200 rounded-sm"
-                      onClick={() => addFoodItem(item)}
-                    >
-                      ADD
-                    </button>
-                    <button
-                      className="mt-2 text-[9px] shadow-md text-green-400 px-1 py-1 mx-1 font-bold bg-slate-200 rounded-sm"
-                      onClick={() => removeFoodItem(item)}
-                    >
-                      REMOVE
-                    </button>
-                  </div>
+
+                  <button
+                    className="mt-2 text-[9px] shadow-md text-green-400 px-3 py-1 ml-6 font-bold bg-slate-200 rounded-sm"
+                    onClick={() => addFoodItem(item)}
+                  >
+                    ADD
+                  </button>
                 </div>
               </div>
             </div>

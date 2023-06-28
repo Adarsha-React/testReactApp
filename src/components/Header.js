@@ -38,7 +38,7 @@ const Header = () => {
                 className="mx-2 bg-gray-200 font-semibold text-xs px-2 py-1 rounded-md"
                 data-testid="cart"
               >
-                Cart - {cartItems.length}
+                Cart - {cartItems?.length}
               </li>
             </Link>
           </ul>

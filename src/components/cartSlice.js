@@ -7,14 +7,21 @@ const cartSlice = createSlice({
   },
   reducers: {
     addItem: (state, action) => {
-      state.items.push(action.payload);
+      const itemInCart = state.items.find(
+        (item) => item.card.info.id === action.payload.card.info.id
+      );
+
+      if (itemInCart) {
+        itemInCart.quantity++;
+      } else {
+        state.items.push({ ...action.payload, quantity: 1 });
+      }
     },
     clearCart: (state) => {
       state.items = [];
     },
     removeItem: (state, action) => {
       state.items.pop();
-      console.log(action.payload.card.info.id);
     },
   },
 });

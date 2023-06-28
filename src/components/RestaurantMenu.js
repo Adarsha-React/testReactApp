@@ -21,10 +21,11 @@ const RestaurantMenu = () => {
 
   if (resMenu === null) return <h1>Loading menu details</h1>;
 
-  const { name, cuisines, areaName, avgRatingString, totalRatingsString } =
-    resMenu?.cards[0]?.card?.card?.info;
+  const restaurantDetails = resMenu?.cards[0]?.card?.card?.info;
   const { lastMileTravelString } = resMenu?.cards[0]?.card?.card?.info?.sla;
 
+  const { name, cuisines, areaName, avgRatingString, totalRatingsString } =
+    restaurantDetails;
   const offersInfo =
     resMenu?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers;
 
@@ -35,7 +36,7 @@ const RestaurantMenu = () => {
     "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory";
 
   const menuCategoryDetails = completeMenuDetails?.filter(
-    (singleItem) => singleItem.card.card["@type"] === typeItemCategory
+    (singleItem) => singleItem?.card?.card["@type"] === typeItemCategory
   );
 
   return (
@@ -71,7 +72,10 @@ const RestaurantMenu = () => {
         <div>
           {menuCategoryDetails.map((singleCategory, index) => (
             <div key={index}>
-              <MenuDetails singleMenuDetails={singleCategory?.card?.card} />
+              <MenuDetails
+                singleMenuDetails={singleCategory?.card?.card}
+                restaurantDetails={restaurantDetails}
+              />
             </div>
           ))}
         </div>
