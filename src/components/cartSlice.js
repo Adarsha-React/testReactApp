@@ -21,7 +21,17 @@ const cartSlice = createSlice({
       state.items = [];
     },
     removeItem: (state, action) => {
-      state.items.pop();
+      const item = state.items.find(
+        (item) => item.card.info.id === action.payload.card.info.id
+      );
+
+      item.quantity--;
+      if (item.quantity === 0) {
+        const RemainingItems = state.items.filter(
+          (item) => item.card.info.id !== action.payload.card.info.id
+        );
+        state.items = RemainingItems;
+      }
     },
   },
 });
