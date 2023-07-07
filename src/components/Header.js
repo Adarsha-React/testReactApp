@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 const Header = () => {
   const isOnline = useOnline();
 
-  const cartItems = useSelector((store) => store.cart.items);
+  const cartItems = useSelector((store) => store?.cart?.items);
   return (
     <div className="flex justify-between px-5 shadow-sm">
       <div className="">
@@ -30,15 +30,39 @@ const Header = () => {
                 <button className="w-2 h-2 bg-red-500 rounded-lg mr-10"></button>
               )}
             </li>
-            <li className="mx-2 bg-gray-200 font-semibold text-xs px-2 py-1 rounded-md">
-              <Link to="/about"> About </Link>
+            <li className="mx-2 mt-2">
+              <Link to="/about">
+                <div className="flex">
+                  <span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={2.0}
+                      stroke="currentColor"
+                      className="w-4 h-4"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
+                      />
+                    </svg>
+                  </span>
+                  <span className="text-xs font-semibold px-1">About</span>
+                </div>
+              </Link>
             </li>
             <Link to="/cart">
-              <li
-                className="mx-2 bg-gray-200 font-semibold text-xs px-2 py-1 rounded-md"
-                data-testid="cart"
-              >
-                Cart - {cartItems?.length}
+              <li data-testid="cart">
+                <div className="px-3 ">
+                  <button className="text-[9px] border-2 border-black px-1 font-bold hover:bg-orange-400">
+                    {cartItems?.length}
+                  </button>
+                  <span className="text-xs pl-1 font-semibold hover:text-orange-400">
+                    Cart
+                  </span>
+                </div>
               </li>
             </Link>
           </ul>
